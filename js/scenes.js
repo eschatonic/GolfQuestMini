@@ -34,9 +34,9 @@ function drawDialogue(eventData){
 	//draw continue triangle
 	if (environment.eventQueue.length > 1 && environment.eventQueue[1].event === "dialogue"){
 		environment.ctx.beginPath();
-		environment.ctx.moveTo(720,550);
-		environment.ctx.lineTo(740,550);
-		environment.ctx.lineTo(730,560);
+		environment.ctx.moveTo(720,550 + Math.sin(environment.frameCount/8) * 5);
+		environment.ctx.lineTo(740,550 + Math.sin(environment.frameCount/8) * 5);
+		environment.ctx.lineTo(730,560 + Math.sin(environment.frameCount/8) * 5);
 		environment.ctx.closePath();
 		environment.ctx.fill();
 	}
