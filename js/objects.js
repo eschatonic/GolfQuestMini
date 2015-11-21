@@ -296,7 +296,8 @@ function Bars(bars,x,y,w,h,colour,lineWidth){
 		}
 	}
 }
-function SandbagsBackWall(){
+
+function SandtrapsBackWall(){
 	this.draw = function(){
 		environment.ctx.fillStyle = colours.LIGHTGREY;
 		environment.ctx.strokeStyle = colours.DARKGREY;
@@ -311,7 +312,7 @@ function SandbagsBackWall(){
 		environment.ctx.strokeRect(100,-10,150,90);
 	}
 }
-function SandbagsBookshelf(x,y){
+function SandtrapsBookshelf(x,y){
 	this.x = x;
 	this.y = y;
 	this.bars1 = new Bars(15, x + 10, y - 45, 280, 30, colours.DARKORANGE, 3);
@@ -339,5 +340,41 @@ function SandbagsBookshelf(x,y){
 		environment.ctx.fillRect(this.x + 10,this.y - 85, 280, 30);
 		environment.ctx.strokeRect(this.x + 10,this.y - 85, 280, 30);
 		this.bars2.draw();
+	}
+}
+function SandtrapsTable(x,y){
+	this.x = x;
+	this.y = y;
+	this.chair1 = new SandtrapsChair(x+15,y-60);
+	this.chair2 = new SandtrapsChair(x+70,y-60);
+	this.chair3 = new SandtrapsChair(x+15,y+10);
+	this.chair4 = new SandtrapsChair(x+70,y+10);
+	this.draw = function(){
+		this.chair1.draw();
+		this.chair2.draw();
+		environment.ctx.fillStyle = colours.GOLD;
+		environment.ctx.strokeStyle = colours.DARKORANGE;
+		environment.ctx.lineWidth = 3;
+		environment.ctx.fillRect(this.x,this.y - 70, 120, 70);
+		environment.ctx.strokeRect(this.x,this.y - 70, 120, 70);
+		this.chair3.draw();
+		this.chair4.draw();
+	}
+}
+function SandtrapsChair(x,y){
+	this.x = x;
+	this.y = y;
+	this.draw = function(){
+		environment.ctx.beginPath();
+		environment.ctx.moveTo(this.x,this.y);
+		environment.ctx.lineTo(this.x+5,this.y-30);
+		environment.ctx.lineTo(this.x+30,this.y-30);
+		environment.ctx.lineTo(this.x+35,this.y);
+		environment.ctx.closePath();
+		environment.ctx.fillStyle = colours.ORANGE;
+		environment.ctx.strokeStyle = colours.DARKORANGE;
+		environment.ctx.lineWidth = 3;
+		environment.ctx.fill();
+		environment.ctx.stroke();
 	}
 }

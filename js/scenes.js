@@ -50,9 +50,11 @@ environment.scenes = {
 	"sandtrapsHouse": {
 		setup: function(){
 			environment.objectsInScene.push(new Bars(18,0,0,environment.canvas.width,environment.canvas.height));
-			environment.objectsInScene.push(new SandbagsBackWall());
-			environment.objectsInScene.push(new SandbagsBookshelf(-40,250));
-			environment.objectsInScene.push(new SandbagsBookshelf(environment.canvas.width-240,250));
+			environment.objectsInScene.push(new SandtrapsBackWall());
+			environment.objectsInScene.push(new SandtrapsBookshelf(-40,250));
+			environment.objectsInScene.push(new SandtrapsBookshelf(environment.canvas.width-240,250));
+			environment.objectsInScene.push(new SandtrapsTable(70,400));
+			environment.objectsInScene.push(new SandtrapsTable(environment.canvas.width - 170,400));
 		},
 		loop: function(){
 			//background
