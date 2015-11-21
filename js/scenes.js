@@ -10,6 +10,7 @@ function clear(style){
 	environment.ctx.fillStyle = style || "black";
 	environment.ctx.fillRect(0,0,environment.canvas.width,environment.canvas.height);
 }
+
 function queueEvent(event, eventData, time){
 	if (time) {
 		console.log("Time does nothing right now");
@@ -19,6 +20,52 @@ function queueEvent(event, eventData, time){
 }
 function dismissEvent(index){
 	environment.eventQueue.splice(environment.eventQueue[0],1);
+}
+
+function drawDialogue(eventData){
+	//draw box for dialogue
+	environment.ctx.fillStyle = colours.DEEPPURPLE;
+	environment.ctx.fillRect(200,450,550,125);
+	environment.ctx.fillStyle = colours.PINK;
+	environment.ctx.strokeStyle = colours.DEEPPURPLE;
+	strokeFillRect(environment.ctx,750-3,450-3,6,125+6);
+	strokeFillRect(environment.ctx,200-3,450-3,550+6,6);
+	strokeFillRect(environment.ctx,200-3,575-3,550+6,6);
+	//draw continue triangle
+	if (environment.eventQueue.length > 1 && environment.eventQueue[1].event === "dialogue"){
+		environment.ctx.beginPath();
+		environment.ctx.moveTo(720,550);
+		environment.ctx.lineTo(740,550);
+		environment.ctx.lineTo(730,560);
+		environment.ctx.closePath();
+		environment.ctx.fill();
+	}
+	//write eventData.dialogue
+	environment.ctx.fillStyle = colours.WHITE;
+	environment.ctx.font = "24px sans-serif";
+	environment.ctx.textAlign = "left";
+	environment.ctx.fillText(game.characters[eventData.character].name.toUpperCase(),212,484);
+	environment.ctx.fillText('"' + eventData.dialogue.toUpperCase() + '"',212,524);
+	//draw character portrait for eventData.character
+	game.characters[eventData.character].portrait.draw(50,440);
+	//draw box for character portrait
+	environment.ctx.fillStyle = colours.PINK;
+	strokeFillRect(environment.ctx,50-3,440-3,150+6,6);
+	strokeFillRect(environment.ctx,50-3,585-3,150+6,6);
+	strokeFillRect(environment.ctx,200-3,440-3,6,145+6);
+	strokeFillRect(environment.ctx,50-3,440-3,6,145+6);
+	//draw golfball corners
+	var ballLocs = [[50,440],[200,440],[50,584],[200,584],[750,450],[750,575]];
+	environment.ctx.strokeStyle = colours.LIGHTGREY;
+	environment.ctx.fillStyle = colours.WHITE;
+	for (var loc in ballLocs){
+		environment.ctx.beginPath();
+		//environment.ctx.moveTo();
+		environment.ctx.arc(ballLocs[loc][0],ballLocs[loc][1],7,0,Math.PI*2,false);
+		environment.ctx.closePath();
+		environment.ctx.stroke();
+		environment.ctx.fill();
+	}
 }
 
 // SCENE DATA

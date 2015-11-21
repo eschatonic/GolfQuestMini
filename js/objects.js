@@ -302,14 +302,11 @@ function SandtrapsBackWall(){
 		environment.ctx.fillStyle = colours.LIGHTGREY;
 		environment.ctx.strokeStyle = colours.DARKGREY;
 		environment.ctx.lineWidth = 3;
-		environment.ctx.fillRect(-10,-10,environment.canvas.width+20,90);
-		environment.ctx.strokeRect(-10,-10,environment.canvas.width+20,90);
+		strokeFillRect(environment.ctx,-10,-10,environment.canvas.width+20,90);
 		environment.ctx.fillStyle = colours.MIDGREY;
-		environment.ctx.fillRect(-10,20,environment.canvas.width+20,20);
-		environment.ctx.strokeRect(-10,20,environment.canvas.width+20,20);
+		strokeFillRect(environment.ctx,-10,20,environment.canvas.width+20,20);
 		environment.ctx.fillStyle = colours.MIDGREY2;
-		environment.ctx.fillRect(100,-10,150,90);
-		environment.ctx.strokeRect(100,-10,150,90);
+		strokeFillRect(environment.ctx,100,-10,150,90);
 	}
 }
 function SandtrapsBookshelf(x,y){
@@ -334,11 +331,9 @@ function SandtrapsBookshelf(x,y){
 		environment.ctx.stroke();
 		//uppershelf
 		environment.ctx.fillStyle = colours.MIDORANGE;
-		environment.ctx.fillRect(this.x + 10,this.y - 45, 280, 30);
-		environment.ctx.strokeRect(this.x + 10,this.y - 45, 280, 30);
+		strokeFillRect(environment.ctx,this.x + 10,this.y - 45, 280, 30);
 		this.bars1.draw();
-		environment.ctx.fillRect(this.x + 10,this.y - 85, 280, 30);
-		environment.ctx.strokeRect(this.x + 10,this.y - 85, 280, 30);
+		strokeFillRect(environment.ctx,this.x + 10,this.y - 85, 280, 30);
 		this.bars2.draw();
 	}
 }
@@ -355,8 +350,7 @@ function SandtrapsTable(x,y){
 		environment.ctx.fillStyle = colours.GOLD;
 		environment.ctx.strokeStyle = colours.DARKORANGE;
 		environment.ctx.lineWidth = 3;
-		environment.ctx.fillRect(this.x,this.y - 70, 120, 70);
-		environment.ctx.strokeRect(this.x,this.y - 70, 120, 70);
+		strokeFillRect(environment.ctx,this.x,this.y - 70, 120, 70);
 		this.chair3.draw();
 		this.chair4.draw();
 	}

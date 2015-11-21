@@ -11,6 +11,7 @@ var colours = {
 	WHITE:'#EFF5F3',
 	PINK:'#fa7f9a',
 	PURPLE:'#804D6C',
+	DEEPPURPLE:'#880C49',
 	GREEN:'#adde7e',
 
 	DARKGREY:'#333333',
@@ -23,6 +24,7 @@ var colours = {
 	MIDORANGE:'#CA8265',
 	DARKORANGE:'#B35541'
 };
+
 
 var environment = {
 	interval: 1000 / 60, //target framerate
@@ -43,6 +45,8 @@ var environment = {
 				if (controls.space){
 					dismissEvent(0);
 					controls.space = false;
+				} else {
+					drawDialogue(environment.eventQueue[0].eventData);
 				}
 			}
 		}
@@ -54,7 +58,15 @@ var game = {
 		ace:{},
 		lina:{},
 		wedge:{},
-		sandtraps:{}
+		sandtraps:{
+			name:"Prof. Sandtraps",
+			portrait:{
+				draw:function(x,y){
+					environment.ctx.fillStyle = colours.PURPLE;
+					environment.ctx.fillRect(x,y,150,144);
+				}
+			}
+		}
 	},
 	inventory:[]
 };
