@@ -10,6 +10,16 @@ function clear(style){
 	environment.ctx.fillStyle = style || "black";
 	environment.ctx.fillRect(0,0,environment.canvas.width,environment.canvas.height);
 }
+function queueEvent(event, eventData, time){
+	if (time) {
+		console.log("Time does nothing right now");
+	} else {
+		environment.eventQueue.push({event:event, eventData:eventData});
+	}
+}
+function dismissEvent(index){
+	environment.eventQueue.splice(environment.eventQueue[0],1);
+}
 
 // SCENE DATA
 
@@ -55,16 +65,15 @@ environment.scenes = {
 			environment.objectsInScene.push(new SandtrapsBookshelf(environment.canvas.width-240,250));
 			environment.objectsInScene.push(new SandtrapsTable(70,400));
 			environment.objectsInScene.push(new SandtrapsTable(environment.canvas.width - 170,400));
+
+			if (game.inventory.indexOf("mythrilPutter") === -1){
+				queueEvent("dialogue", { character:"sandtraps", dialogue: "It's dangerous to go alone!" });
+				queueEvent("dialogue", { character:"sandtraps", dialogue: "Take this" });
+			}
 		},
 		loop: function(){
 			//background
 			clear(colours.MIDGREY);
-
-			//controls
-			if (controls.space){
-				changeScene("menu");
-				controls.space = false;
-			}
 
 			//move objects
 			for (var obj in environment.objectsInScene){
@@ -75,6 +84,7 @@ environment.scenes = {
 				environment.objectsInScene[obj].draw(environment.frameCount);
 			}
 
+			environment.handleEvents();
 		}
 	}
 };
