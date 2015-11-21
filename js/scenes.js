@@ -47,7 +47,7 @@ function drawDialogue(eventData){
 	environment.ctx.fillText(game.characters[eventData.character].name.toUpperCase(),212,484);
 	environment.ctx.fillText('"' + eventData.dialogue.toUpperCase() + '"',212,524);
 	//draw character portrait for eventData.character
-	game.characters[eventData.character].portrait.draw(50,440);
+	environment.ctx.drawImage(game.characters[eventData.character].portrait,50,440,150,144);
 	//draw box for character portrait
 	environment.ctx.fillStyle = colours.PINK;
 	strokeFillRect(environment.ctx,50-3,440-3,150+6,6);

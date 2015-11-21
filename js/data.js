@@ -60,12 +60,7 @@ var game = {
 		wedge:{},
 		sandtraps:{
 			name:"Prof. Sandtraps",
-			portrait:{
-				draw:function(x,y){
-					environment.ctx.fillStyle = colours.PURPLE;
-					environment.ctx.fillRect(x,y,150,144);
-				}
-			}
+			portrait:loadImage('img/sandtraps.PNG')
 		}
 	},
 	inventory:[]

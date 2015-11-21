@@ -41,3 +41,9 @@ function strokeFillRect(ctx,x,y,w,h){
 	ctx.fillRect(x,y,w,h);
 	ctx.strokeRect(x,y,w,h);
 }
+
+function loadImage(url){
+	var img = document.createElement('img');
+	img.src = url;
+	return img;
+}
