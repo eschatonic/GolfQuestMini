@@ -11,10 +11,15 @@ var colours = {
 	PINK:'#fa7f9a',
 	GREEN:'#adde7e',
 	DARKGREY:'#333333',
+	MIDGREY2:'#4d4d4d',
+	MIDGREY:'#787878',
 	LIGHTGREY:'#BCB2AF',
 	PURPLE:'#804D6C',
 	GOLD:'#FBDAA4',
-	WHITE:'#EFF5F3'
+	WHITE:'#EFF5F3',
+	ORANGE:'#E7B28A',
+	MIDORANGE:'#CA8265',
+	DARKORANGE:'#B35541'
 };
 
 var environment = {

@@ -275,3 +275,69 @@ function MenuText(){
 		strokeFillText(environment.ctx,"PRESS SPACE TO BEGIN",environment.canvas.width/2,environment.canvas.height - 25);
 	}
 }
+
+function Bars(bars,x,y,w,h,colour,lineWidth){
+	this.bars = bars;
+	this.x = x;
+	this.y = y;
+	this.w = w;
+	this.h = h;
+	this.colour = colour;
+	this.lineWidth = lineWidth;
+	this.draw = function(){
+		for (var i=1;i<this.bars;i++){
+			environment.ctx.beginPath();
+			environment.ctx.moveTo(i * (this.w/this.bars) + this.x, this.y);
+			environment.ctx.lineTo(i * (this.w/this.bars) + this.x, this.y + this.h);
+			environment.ctx.strokeStyle = this.colour || colours.DARKGREY;
+			environment.ctx.lineWidth = this.lineWidth || 2;
+			environment.ctx.closePath();
+			environment.ctx.stroke();
+		}
+	}
+}
+function SandbagsBackWall(){
+	this.draw = function(){
+		environment.ctx.fillStyle = colours.LIGHTGREY;
+		environment.ctx.strokeStyle = colours.DARKGREY;
+		environment.ctx.lineWidth = 3;
+		environment.ctx.fillRect(-10,-10,environment.canvas.width+20,90);
+		environment.ctx.strokeRect(-10,-10,environment.canvas.width+20,90);
+		environment.ctx.fillStyle = colours.MIDGREY;
+		environment.ctx.fillRect(-10,20,environment.canvas.width+20,20);
+		environment.ctx.strokeRect(-10,20,environment.canvas.width+20,20);
+		environment.ctx.fillStyle = colours.MIDGREY2;
+		environment.ctx.fillRect(100,-10,150,90);
+		environment.ctx.strokeRect(100,-10,150,90);
+	}
+}
+function SandbagsBookshelf(x,y){
+	this.x = x;
+	this.y = y;
+	this.bars1 = new Bars(15, x + 10, y - 45, 280, 30, colours.DARKORANGE, 3);
+	this.bars2 = new Bars(15, x + 10, y - 85, 280, 30, colours.DARKORANGE, 3);
+	this.draw = function(){
+		//outline
+		environment.ctx.beginPath();
+		environment.ctx.moveTo(this.x,this.y);
+		environment.ctx.lineTo(this.x,this.y-100);
+		environment.ctx.quadraticCurveTo(this.x,this.y-120,this.x+20,this.y-120);
+		environment.ctx.lineTo(this.x+280,this.y-120);
+		environment.ctx.quadraticCurveTo(this.x+300,this.y-120,this.x+300,this.y-100);
+		environment.ctx.lineTo(this.x+300,this.y);
+		environment.ctx.closePath();
+		environment.ctx.fillStyle = colours.ORANGE;
+		environment.ctx.strokeStyle = colours.DARKORANGE;
+		environment.ctx.lineWidth = 3;
+		environment.ctx.fill();
+		environment.ctx.stroke();
+		//uppershelf
+		environment.ctx.fillStyle = colours.MIDORANGE;
+		environment.ctx.fillRect(this.x + 10,this.y - 45, 280, 30);
+		environment.ctx.strokeRect(this.x + 10,this.y - 45, 280, 30);
+		this.bars1.draw();
+		environment.ctx.fillRect(this.x + 10,this.y - 85, 280, 30);
+		environment.ctx.strokeRect(this.x + 10,this.y - 85, 280, 30);
+		this.bars2.draw();
+	}
+}

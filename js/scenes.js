@@ -33,6 +33,33 @@ environment.scenes = {
 
 			//controls
 			if (controls.space){
+				changeScene("sandtrapsHouse");
+				controls.space = false;
+			}
+
+			//move objects
+			for (var obj in environment.objectsInScene){
+				if (environment.objectsInScene[obj].move) environment.objectsInScene[obj].move();
+			}
+			//draw objects
+			for (var obj in environment.objectsInScene){
+				environment.objectsInScene[obj].draw(environment.frameCount);
+			}
+		}
+	},
+	"sandtrapsHouse": {
+		setup: function(){
+			environment.objectsInScene.push(new Bars(18,0,0,environment.canvas.width,environment.canvas.height));
+			environment.objectsInScene.push(new SandbagsBackWall());
+			environment.objectsInScene.push(new SandbagsBookshelf(-40,250));
+			environment.objectsInScene.push(new SandbagsBookshelf(environment.canvas.width-240,250));
+		},
+		loop: function(){
+			//background
+			clear(colours.MIDGREY);
+
+			//controls
+			if (controls.space){
 				changeScene("menu");
 				controls.space = false;
 			}
@@ -45,6 +72,7 @@ environment.scenes = {
 			for (var obj in environment.objectsInScene){
 				environment.objectsInScene[obj].draw(environment.frameCount);
 			}
+
 		}
 	}
 };
