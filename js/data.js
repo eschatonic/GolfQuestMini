@@ -48,6 +48,13 @@ var environment = {
 				} else {
 					drawDialogue(environment.eventQueue[0].eventData);
 				}
+			} else if (e.event === "grantItem"){
+				if (controls.space){
+					dismissEvent(0);
+					controls.space = false;
+				} else {
+					drawGrantItem(environment.eventQueue[0].eventData);
+				}
 			}
 		}
 	}
@@ -61,6 +68,12 @@ var game = {
 		sandtraps:{
 			name:"Prof. Sandtraps",
 			portrait:loadImage('img/sandtraps.PNG')
+		}
+	},
+	items: {
+		mythrilPutter:{
+			name:"Mythril Putter",
+			image:false
 		}
 	},
 	inventory:[]

@@ -67,6 +67,41 @@ function drawDialogue(eventData){
 		environment.ctx.fill();
 	}
 }
+function drawGrantItem(eventData){
+	clear(colours.GREEN);
+	//draw box
+	var x = 250,
+		y = 350,
+		w = 300,
+		h = 100;
+	environment.ctx.fillStyle = colours.DEEPPURPLE;
+	environment.ctx.fillRect(x,y,w,h);
+	//draw sides
+	environment.ctx.fillStyle = colours.PINK;
+	environment.ctx.strokeStyle = colours.DEEPPURPLE;
+	strokeFillRect(environment.ctx,x-3,y-3,w+6,6);
+	strokeFillRect(environment.ctx,x-3,y+h-3,w+6,6);
+	strokeFillRect(environment.ctx,x-3,y-3,6,h+6);
+	strokeFillRect(environment.ctx,x+w-3,y-3,6,h+6);
+	//draw text
+	environment.ctx.fillStyle = colours.WHITE;
+	environment.ctx.font = "24px sans-serif";
+	environment.ctx.textAlign = "left";
+	environment.ctx.fillText('RECEIVED',x+12,y+40);
+	environment.ctx.fillText(game.items[eventData.item].name.toUpperCase(),x+12,y+74);
+	//draw golfball corners
+	var ballLocs = [[x,y],[x,y+h],[x+w,y],[x+w,y+h]];
+	environment.ctx.strokeStyle = colours.LIGHTGREY;
+	environment.ctx.fillStyle = colours.WHITE;
+	for (var loc in ballLocs){
+		environment.ctx.beginPath();
+		//environment.ctx.moveTo();
+		environment.ctx.arc(ballLocs[loc][0],ballLocs[loc][1],7,0,Math.PI*2,false);
+		environment.ctx.closePath();
+		environment.ctx.stroke();
+		environment.ctx.fill();
+	}
+}
 
 // SCENE DATA
 
@@ -116,6 +151,7 @@ environment.scenes = {
 			if (game.inventory.indexOf("mythrilPutter") === -1){
 				queueEvent("dialogue", { character:"sandtraps", dialogue: "It's dangerous to go alone!" });
 				queueEvent("dialogue", { character:"sandtraps", dialogue: "Take this" });
+				queueEvent("grantItem", { character:"ace", item: "mythrilPutter" });
 			}
 		},
 		loop: function(){
