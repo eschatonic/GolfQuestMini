@@ -71,7 +71,10 @@ var game = {
 			name:"Lina",
 			back:loadImage("img/lina-back.png")
 		},
-		wedge:{},
+		wedge:{
+			name:"Wedge",
+			back:loadImage("img/wedge-back.png")
+		},
 		sandtraps:{
 			name:"Prof. Sandtraps",
 			portrait:loadImage('img/sandtraps.PNG'),

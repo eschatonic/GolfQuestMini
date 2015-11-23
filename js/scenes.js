@@ -159,6 +159,7 @@ environment.scenes = {
 			environment.objectsInScene.push(new Character("sandtraps","front",environment.canvas.width/2,150));
 			environment.objectsInScene.push(new Character("ace","back",environment.canvas.width/2 + 40,280));
 			environment.objectsInScene.push(new Character("lina","back",environment.canvas.width/2 + 140,360));
+			environment.objectsInScene.push(new Character("wedge","back",environment.canvas.width/2 - 40,370));
 
 			if (game.inventory.indexOf("mythrilPutter") === -1){
 				queueEvent("dialogue", { character:"sandtraps", dialogue: "It's dangerous to go alone!" });
