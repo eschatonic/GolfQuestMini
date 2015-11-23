@@ -62,7 +62,10 @@ var environment = {
 
 var game = {
 	characters: {
-		ace:{},
+		ace:{
+			name:"Ace",
+			portrait:loadImage("img/ace.PNG")
+		},
 		lina:{},
 		wedge:{},
 		sandtraps:{

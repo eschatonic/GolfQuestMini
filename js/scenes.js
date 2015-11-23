@@ -152,6 +152,8 @@ environment.scenes = {
 				queueEvent("dialogue", { character:"sandtraps", dialogue: "It's dangerous to go alone!" });
 				queueEvent("dialogue", { character:"sandtraps", dialogue: "Take this" });
 				queueEvent("grantItem", { character:"ace", item: "mythrilPutter" });
+				queueEvent("dialogue", { character:"ace", dialogue: "Don't worry Professor..." });
+				queueEvent("dialogue", { character:"ace", dialogue: "We're gonna sink 'em all!" });
 			}
 		},
 		loop: function(){
