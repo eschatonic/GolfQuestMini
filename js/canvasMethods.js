@@ -37,3 +37,13 @@ function strokeFillText(ctx, text, x, y){
 	ctx.strokeText(text,x,y);
 	ctx.fillText(text,x,y);
 }
+function strokeFillRect(ctx,x,y,w,h){
+	ctx.fillRect(x,y,w,h);
+	ctx.strokeRect(x,y,w,h);
+}
+
+function loadImage(url){
+	var img = document.createElement('img');
+	img.src = url;
+	return img;
+}
