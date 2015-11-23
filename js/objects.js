@@ -372,3 +372,13 @@ function SandtrapsChair(x,y){
 		environment.ctx.stroke();
 	}
 }
+
+function Character(name,facing,x,y){
+	this.name = name;
+	this.facing = facing;
+	this.x = x;
+	this.y = y;
+	this.draw = function(){
+		drawSprite(game.characters[this.name][this.facing],this.x,this.y,0.8,"center");
+	}
+}

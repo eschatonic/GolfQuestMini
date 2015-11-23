@@ -64,13 +64,18 @@ var game = {
 	characters: {
 		ace:{
 			name:"Ace",
-			portrait:loadImage("img/ace.PNG")
+			portrait:loadImage("img/ace.PNG"),
+			back:loadImage("img/ace-back.png")
 		},
-		lina:{},
+		lina:{
+			name:"Lina",
+			back:loadImage("img/lina-back.png")
+		},
 		wedge:{},
 		sandtraps:{
 			name:"Prof. Sandtraps",
-			portrait:loadImage('img/sandtraps.PNG')
+			portrait:loadImage('img/sandtraps.PNG'),
+			front:loadImage('img/sandtraps-front.png')
 		}
 	},
 	items: {
