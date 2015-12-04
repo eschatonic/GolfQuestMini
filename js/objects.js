@@ -159,7 +159,7 @@ function Cloud(x,y,scale){
 	}
 }
 
-function MenuGrass(){
+function IntroGrass(){
 	this.draw = function(){
 		environment.ctx.fillStyle = colours.GREEN;
 		environment.ctx.strokeStyle = colours.DARKGREY;
@@ -168,7 +168,7 @@ function MenuGrass(){
 		environment.ctx.strokeRect(-5,environment.canvas.height-82,environment.canvas.width+10,90);
 	}
 }
-function MenuBushRight(){
+function IntroBushRight(){
 	this.draw = function(){
 		environment.ctx.beginPath();
 		environment.ctx.moveTo(environment.canvas.width * 0.7,environment.canvas.height - 82);
@@ -203,7 +203,7 @@ function MenuBushRight(){
 		environment.ctx.stroke();
 	}
 }
-function MenuBushLeft(){
+function IntroBushLeft(){
 	this.draw = function(){
 		environment.ctx.beginPath();
 		environment.ctx.moveTo(environment.canvas.width * 0.3,environment.canvas.height - 82);
@@ -236,7 +236,7 @@ function MenuBushLeft(){
 		environment.ctx.stroke();
 	}
 }
-function MenuTitle(){
+function IntroTitle(){
 	this.draw = function(){
 		var tx = 150,
 			ty = 35;
@@ -267,7 +267,7 @@ function MenuTitle(){
 		environment.ctx.setTransform (1, 0, 0, 1, 0, 0);
 	}
 }
-function MenuText(){
+function IntroText(){
 	this.draw = function(){
 		environment.ctx.strokeStyle = colours.DARKGREY;
 		environment.ctx.fillStyle = colours.WHITE;

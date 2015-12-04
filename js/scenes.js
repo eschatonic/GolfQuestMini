@@ -5,7 +5,37 @@ function changeScene(scene, preserveFrameCount){
 	environment.scenes[scene].setup();
 	if (!preserveFrameCount) environment.frameCount = 0;
 	environment.currentScene = scene;
+	environment.moving = false;
+	environment.loc = {
+		x:0,
+		y:0
+	}
 }
+
+function moveScene(){
+	if (environment.moving){
+		var step = 0.05;
+		if (environment.moving[0] < 0){ //up
+			environment.moving[0]++;
+			environment.loc.y -= step;
+		} else if (environment.moving[0] > 0){ //down
+			environment.moving[0]--;
+			environment.loc.y += step;
+		} else if (environment.moving[1] < 0){ //left
+			environment.moving[1]++;
+			environment.loc.x -= step;
+		} else if (environment.moving[1] > 0){ //right
+			environment.moving[1]--;
+			environment.loc.x += step;
+		}
+		if (environment.moving[0] == 0 && environment.moving[1] == 0){
+			environment.moving = false;
+			environment.loc.x = Math.round(environment.loc.x);
+			environment.loc.y = Math.round(environment.loc.y);
+		}
+	}
+}
+
 function clear(style){
 	environment.ctx.fillStyle = style || "black";
 	environment.ctx.fillRect(0,0,environment.canvas.width,environment.canvas.height);
@@ -115,28 +145,24 @@ function drawGrantItem(eventData){
 // SCENE DATA
 
 environment.scenes = {
-	"menu": {
+	"intro": {
 		setup: function(){
 			for (var i=0; i<6; i++){
 				environment.objectsInScene.push(new Cloud(environment.canvas.width/i + environment.canvas.width/5 * Math.random(), environment.canvas.height * (2 * Math.random() / 3) + 40, 0.7 + Math.random() * 0.6));
 			}
-			environment.objectsInScene.push(new MenuBushRight());
-			environment.objectsInScene.push(new MenuBushLeft());
+			environment.objectsInScene.push(new IntroBushRight());
+			environment.objectsInScene.push(new IntroBushLeft());
 			environment.objectsInScene.push(new Flag(environment.canvas.width/2, environment.canvas.height - 82));
 			environment.objectsInScene.push(new Windmill(environment.canvas.width*0.18, environment.canvas.height - 82));
-			environment.objectsInScene.push(new MenuGrass());
-			environment.objectsInScene.push(new MenuTitle());
-			environment.objectsInScene.push(new MenuText());
+			environment.objectsInScene.push(new IntroGrass());
+			environment.objectsInScene.push(new IntroTitle());
+			environment.objectsInScene.push(new IntroText());
 		},
 		loop: function(){
 			//background
 			clear(colours.PINK);
 
-			//controls
-			if (controls.space){
-				changeScene("sandtrapsHouse");
-				controls.space = false;
-			}
+			controls.scenes.intro();
 
 			//move objects
 			for (var obj in environment.objectsInScene){
@@ -173,14 +199,19 @@ environment.scenes = {
 			//background
 			clear(colours.MIDGREY);
 
+			controls.scenes.overworld();
+
 			//move objects
 			for (var obj in environment.objectsInScene){
 				if (environment.objectsInScene[obj].move) environment.objectsInScene[obj].move();
 			}
 			//draw objects
+			environment.ctx.save();
+			environment.ctx.translate(environment.loc.x * -50,environment.loc.y * -50);
 			for (var obj in environment.objectsInScene){
 				environment.objectsInScene[obj].draw(environment.frameCount);
 			}
+			environment.ctx.restore();
 
 			environment.handleEvents();
 		}

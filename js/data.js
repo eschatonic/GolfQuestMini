@@ -1,12 +1,3 @@
-var controls = {
-	up: false,
-	left:false,
-	right:false,
-	down: false,
-	space: false,
-	esc: false
-};
-
 var colours = {
 	WHITE:'#EFF5F3',
 	PINK:'#fa7f9a',
@@ -34,8 +25,12 @@ var environment = {
 	//font: " guinea_pigsregular, sans-serif",
 	font: " iregularegular, sans-serif",
 
-	currentScene: "menu",
+	currentScene: "intro",
 	objectsInScene: [],
+	loc:{
+		x:0,
+		y:0
+	},
 
 	eventQueue: [],
 	handleEvents: function(){
@@ -61,6 +56,7 @@ var environment = {
 };
 
 var game = {
+	moveSpeed: 20,
 	characters: {
 		ace:{
 			name:"Ace",
